@@ -1,12 +1,21 @@
 <?php
+
+//print_r($_GET);
+
 // Carico le dipendenze
+
 require "./lib/JSONReader.php";
 // Model(parte che gestisce i dati)
 $taskList = JSONReader('./dataset/TaskList.json');
-
+if(isset($_GET['searchText'])){
+    $searchText = trim(filter_var($_GET['searchText'], FILTER_SANITIZE_STRING)); 
+}
+else{
+    $searchText = '';
+}
 // Controller()
 
-
+//var_dump($searchText);
 
 ?>
 
@@ -22,8 +31,8 @@ $taskList = JSONReader('./dataset/TaskList.json');
     <title>Task List</title>
 </head>
 <body>
-    <form action="">
-        <input type="text" name="searchText">
+    <form action="index.php">
+        <input type="text" name="searchText" value="<?= $searchText ?>">
         <button type="submit">CERCA</button>
     </form>
     <ul>
