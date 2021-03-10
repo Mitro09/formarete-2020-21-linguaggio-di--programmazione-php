@@ -5,17 +5,25 @@
 // Carico le dipendenze
 require "./lib/searchFunctions.php";
 require "./lib/JSONReader.php";
+
 // Model(parte che gestisce i dati)
+
 $taskList = JSONReader('./dataset/TaskList.json');
-if(isset($_GET['searchText'])){
+
+// Controller()
+
+if(isset($_GET['searchText']) && trim($_GET['searchText']) !== ''){
     $searchText = trim(filter_var($_GET['searchText'], FILTER_SANITIZE_STRING)); 
     $taskList = array_filter($taskList,searchText($searchText));
 }
 else{
     $searchText = '';
 }
-// Controller()
 
+if (isset($_GET['status'])){
+    $status = ($_GET['status']);
+    $taskList = array_filter($taskList,searchStatus($status));
+}
 //var_dump($searchText);
 
 ?>
@@ -35,6 +43,14 @@ else{
     <form action="index.php">
         <input type="text" name="searchText" value="<?= $searchText ?>">
         <button type="submit">CERCA</button>
+        <div id="status">
+            <input type="radio" name="status" value="progress" id="progress">
+            <label for="progress">Progress</label>
+            <input type="radio" name ="status" value="done" id="don">
+            <label for="done">Done</label>
+            <input type="radio" name="status" value="todo" id="todo">
+            <label for="todo">To Do</label>
+        </div>
     </form>
     <ul>
 
@@ -54,6 +70,9 @@ else{
         <li class="tasklist-item tasklist-item-todo">farina <b>todo</b></li>
         -->
     </ul>
+
+</body>
+
 </html>
 
 
