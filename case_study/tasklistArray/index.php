@@ -46,11 +46,11 @@ if (isset($_GET['status'])){
         <div id="status">
             <input type="radio" name="status" value="progress" id="progress">
             <label for="progress">Progress</label>
-            <input type="radio" name ="status" value="done" id="don">
+            <input type="radio" name ="status" value="done" id="done">
             <label for="done">Done</label>
             <input type="radio" name="status" value="todo" id="todo">
             <label for="todo">To Do</label>
-            <input type="radio" name="status" value="all" id="all">
+            <input type="radio" value="all" id="all">
             <label for="all">All Tasks</label>
         </div>
     </form>
