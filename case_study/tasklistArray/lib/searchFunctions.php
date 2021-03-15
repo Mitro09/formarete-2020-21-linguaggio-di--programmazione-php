@@ -15,7 +15,7 @@ function _searchText($searchText){
 
 
 
-//arry filter (la callback passa 1 valore e deve restituire un booleano)
+//array filter (la callback passa 1 valore e deve restituire un booleano)
 // imperativo
 /**
  * @var string $searchText testo da cercare nella chiave taskName

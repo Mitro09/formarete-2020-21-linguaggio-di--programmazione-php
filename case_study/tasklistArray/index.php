@@ -14,7 +14,7 @@ $taskList = JSONReader('./dataset/TaskList.json');
 
 if(isset($_GET['searchText']) && trim($_GET['searchText']) !== ''){
     $searchText = trim(filter_var($_GET['searchText'], FILTER_SANITIZE_STRING)); 
-    $taskList = array_filter($taskList,searchText($searchText));
+    $taskList = array_filter($taskList,_searchText($searchText));
 }
 else{
     $searchText = '';
@@ -50,6 +50,8 @@ if (isset($_GET['status'])){
             <label for="done">Done</label>
             <input type="radio" name="status" value="todo" id="todo">
             <label for="todo">To Do</label>
+            <input type="radio" name="status" value="all" id="all">
+            <label for="all">All Tasks</label>
         </div>
     </form>
     <ul>
