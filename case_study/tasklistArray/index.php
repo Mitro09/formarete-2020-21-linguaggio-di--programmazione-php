@@ -23,6 +23,12 @@ else{
 if (isset($_GET['status'])){
     $status = ($_GET['status']);
     $taskList = array_filter($taskList,searchStatus($status));
+    if ($status==('all')){
+        $taskList = JSONReader('./dataset/TaskList.json');
+    }
+}
+else{
+    $status='all';
 }
 //var_dump($searchText);
 
@@ -44,13 +50,13 @@ if (isset($_GET['status'])){
         <input type="text" name="searchText" value="<?= $searchText ?>">
         <button type="submit">CERCA</button>
         <div id="status">
-            <input type="radio" name="status" value="progress" id="progress">
+            <input type="radio" name="status" value="progress" id="progress" <?php if ($status == "progress") echo "checked";?>>
             <label for="progress">Progress</label>
-            <input type="radio" name ="status" value="done" id="done">
+            <input type="radio" name ="status" value="done" id="done"<?php if ($status == "done") echo "checked";?> >
             <label for="done">Done</label>
-            <input type="radio" name="status" value="todo" id="todo">
+            <input type="radio" name="status" value="todo" id="todo" <?php if ($status == "todo") echo "checked";?>>
             <label for="todo">To Do</label>
-            <input type="radio" value="all" id="all">
+            <input type="radio" name="status" value="all" id="all" <?php if ($status == "all") echo "checked";?>>
             <label for="all">All Tasks</label>
         </div>
     </form>
