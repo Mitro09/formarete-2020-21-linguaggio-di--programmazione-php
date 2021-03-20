@@ -8,7 +8,6 @@ require "./lib/JSONReader.php";
 
 // Model(parte che gestisce i dati)
 
-$taskList = JSONReader('./dataset/TaskList.json');
 
 // Controller()
 
